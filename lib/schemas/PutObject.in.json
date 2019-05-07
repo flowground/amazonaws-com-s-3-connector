@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "properties": {
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "Key": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Body": "HappyFace.jpg",
+                "Bucket": "examplebucket",
+                "Key": "HappyFace.jpg",
+                "ServerSideEncryption": "AES256",
+                "StorageClass": "STANDARD_IA"
+            },
+            "properties": {
+                "Body": {
+                    "description": "Object data.",
+                    "type": "string"
+                },
+                "Metadata": {
+                    "description": "A map of metadata to store with the object in S3.",
+                    "items": {
+                        "properties": {
+                            "key": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

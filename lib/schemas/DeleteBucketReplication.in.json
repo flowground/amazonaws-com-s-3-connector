@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "replication": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "example"
+            },
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

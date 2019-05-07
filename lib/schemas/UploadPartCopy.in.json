@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "Key": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "CopySource": "/bucketname/sourceobjectkey",
+                "Key": "examplelargeobject",
+                "PartNumber": "1",
+                "UploadId": "exampleuoh_10OhKhT7YukE9bjzTPRiuaCotmZM_pFngJFir9OZNrSr5cWa3cq3LZSUsfjI4FI7PkP91We7Nrw--"
+            },
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "acl": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "Key": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "Key": "HappyFace.jpg"
+            },
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

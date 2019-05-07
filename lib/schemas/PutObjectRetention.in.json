@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "properties": {
+        "retention": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "Key": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "Retention": {
+                    "description": "The container element for the Object Retention configuration.",
+                    "properties": {
+                        "Mode": {
+                            "description": "Indicates the Retention mode for the specified object.",
+                            "enum": [
+                                "GOVERNANCE",
+                                "COMPLIANCE"
+                            ],
+                            "type": "string"
+                        },
+                        "RetainUntilDate": {
+                            "description": "The date on which this Object Lock Retention will expire.",
+                            "format": "date-time",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

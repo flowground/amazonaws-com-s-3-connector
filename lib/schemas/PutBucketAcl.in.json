@@ -1,0 +1,105 @@
+{
+    "type": "object",
+    "properties": {
+        "acl": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "GrantFullControl": "id=examplee7a2f25102679df27bb0ae12b3f85be6f290b936c4393484",
+                "GrantWrite": "uri=http://acs.amazonaws.com/groups/s3/LogDelivery"
+            },
+            "properties": {
+                "AccessControlPolicy": {
+                    "description": "<p/>",
+                    "properties": {
+                        "Grants": {
+                            "description": "A list of grants.",
+                            "items": {
+                                "description": "<p/>",
+                                "properties": {
+                                    "Grantee": {
+                                        "description": "<p/>",
+                                        "properties": {
+                                            "DisplayName": {
+                                                "description": "Screen name of the grantee.",
+                                                "type": "string"
+                                            },
+                                            "EmailAddress": {
+                                                "description": "Email address of the grantee.",
+                                                "type": "string"
+                                            },
+                                            "ID": {
+                                                "description": "The canonical user ID of the grantee.",
+                                                "type": "string"
+                                            },
+                                            "Type": {
+                                                "description": "Type of grantee",
+                                                "enum": [
+                                                    "CanonicalUser",
+                                                    "AmazonCustomerByEmail",
+                                                    "Group"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "URI": {
+                                                "description": "URI of the grantee group.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "Type"
+                                        ],
+                                        "type": "object",
+                                        "xml": {
+                                            "attribute": true,
+                                            "namespace": "http://www.w3.org/2001/XMLSchema-instance"
+                                        }
+                                    },
+                                    "Permission": {
+                                        "description": "Specifies the permission given to the grantee.",
+                                        "enum": [
+                                            "FULL_CONTROL",
+                                            "WRITE",
+                                            "WRITE_ACP",
+                                            "READ",
+                                            "READ_ACP"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "Owner": {
+                            "description": "<p/>",
+                            "properties": {
+                                "DisplayName": {
+                                    "description": "<p/>",
+                                    "type": "string"
+                                },
+                                "ID": {
+                                    "description": "<p/>",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

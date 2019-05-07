@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "requestPayment": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket"
+            },
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

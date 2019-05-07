@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "properties": {
+        "policy": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "Policy": "{\"Version\": \"2012-10-17\", \"Statement\": [{ \"Sid\": \"id-1\",\"Effect\": \"Allow\",\"Principal\": {\"AWS\": \"arn:aws:iam::123456789012:root\"}, \"Action\": [ \"s3:PutObject\",\"s3:PutObjectAcl\"], \"Resource\": [\"arn:aws:s3:::acl3/*\" ] } ]}"
+            },
+            "properties": {
+                "Policy": {
+                    "description": "The bucket policy as a JSON document.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "Policy"
+            ],
+            "type": "object"
+        }
+    }
+}

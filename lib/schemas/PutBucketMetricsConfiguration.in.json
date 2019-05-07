@@ -1,0 +1,102 @@
+{
+    "type": "object",
+    "properties": {
+        "metrics": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "MetricsConfiguration": {
+                    "description": "Specifies the metrics configuration.",
+                    "properties": {
+                        "Filter": {
+                            "description": "Specifies a metrics configuration filter. The metrics configuration will only include objects that meet the filter's criteria. A filter must be a prefix, a tag, or a conjunction (MetricsAndOperator).",
+                            "properties": {
+                                "And": {
+                                    "description": "A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The operator must have at least two predicates, and an object must match all of the predicates in order for the filter to apply.",
+                                    "properties": {
+                                        "Prefix": {
+                                            "description": "The prefix used when evaluating an AND predicate.",
+                                            "type": "string"
+                                        },
+                                        "Tags": {
+                                            "description": "The list of tags used when evaluating an AND predicate.",
+                                            "items": {
+                                                "description": "<p/>",
+                                                "properties": {
+                                                    "Key": {
+                                                        "description": "Name of the tag.",
+                                                        "minLength": 1,
+                                                        "type": "string"
+                                                    },
+                                                    "Value": {
+                                                        "description": "Value of the tag.",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "Key",
+                                                    "Value"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "xml": {
+                                        "wrapped": false
+                                    }
+                                },
+                                "Prefix": {
+                                    "description": "The prefix used when evaluating a metrics filter.",
+                                    "type": "string"
+                                },
+                                "Tag": {
+                                    "description": "The tag used when evaluating a metrics filter.",
+                                    "properties": {
+                                        "Key": {
+                                            "description": "Name of the tag.",
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "Value": {
+                                            "description": "Value of the tag.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "Key",
+                                        "Value"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "Id": {
+                            "description": "The ID used to identify the metrics configuration.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Id"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "MetricsConfiguration"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

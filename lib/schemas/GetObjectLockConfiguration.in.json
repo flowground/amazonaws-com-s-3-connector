@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {},
+            "type": "object"
+        },
+        "object_lock": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

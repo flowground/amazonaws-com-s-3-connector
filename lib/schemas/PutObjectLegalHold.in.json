@@ -1,0 +1,39 @@
+{
+    "type": "object",
+    "properties": {
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "Key": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "LegalHold": {
+                    "description": "Container element for the Legal Hold configuration you want to apply to the specified object.",
+                    "properties": {
+                        "Status": {
+                            "description": "Indicates whether the specified object has a Legal Hold in place.",
+                            "enum": [
+                                "ON",
+                                "OFF"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        },
+        "legal_hold": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

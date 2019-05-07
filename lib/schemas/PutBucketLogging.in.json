@@ -1,0 +1,123 @@
+{
+    "type": "object",
+    "properties": {
+        "logging": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "sourcebucket",
+                "BucketLoggingStatus": {
+                    "LoggingEnabled": {
+                        "TargetBucket": "targetbucket",
+                        "TargetGrants": [
+                            {
+                                "Grantee": {
+                                    "Type": "Group",
+                                    "URI": "http://acs.amazonaws.com/groups/global/AllUsers"
+                                },
+                                "Permission": "READ"
+                            }
+                        ],
+                        "TargetPrefix": "MyBucketLogs/"
+                    }
+                }
+            },
+            "properties": {
+                "BucketLoggingStatus": {
+                    "description": "<p/>",
+                    "properties": {
+                        "LoggingEnabled": {
+                            "description": "Container for logging information. Presence of this element indicates that logging is enabled. Parameters TargetBucket and TargetPrefix are required in this case.",
+                            "properties": {
+                                "TargetBucket": {
+                                    "description": "Specifies the bucket where you want Amazon S3 to store server access logs. You can have your logs delivered to any bucket that you own, including the same bucket that is being logged. You can also configure multiple buckets to deliver their logs to the same target bucket. In this case you should choose a different TargetPrefix for each source bucket so that the delivered log files can be distinguished by key.",
+                                    "type": "string"
+                                },
+                                "TargetGrants": {
+                                    "description": "<p/>",
+                                    "items": {
+                                        "description": "<p/>",
+                                        "properties": {
+                                            "Grantee": {
+                                                "description": "<p/>",
+                                                "properties": {
+                                                    "DisplayName": {
+                                                        "description": "Screen name of the grantee.",
+                                                        "type": "string"
+                                                    },
+                                                    "EmailAddress": {
+                                                        "description": "Email address of the grantee.",
+                                                        "type": "string"
+                                                    },
+                                                    "ID": {
+                                                        "description": "The canonical user ID of the grantee.",
+                                                        "type": "string"
+                                                    },
+                                                    "Type": {
+                                                        "description": "Type of grantee",
+                                                        "enum": [
+                                                            "CanonicalUser",
+                                                            "AmazonCustomerByEmail",
+                                                            "Group"
+                                                        ],
+                                                        "type": "string"
+                                                    },
+                                                    "URI": {
+                                                        "description": "URI of the grantee group.",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "Type"
+                                                ],
+                                                "type": "object",
+                                                "xml": {
+                                                    "attribute": true,
+                                                    "namespace": "http://www.w3.org/2001/XMLSchema-instance"
+                                                }
+                                            },
+                                            "Permission": {
+                                                "description": "Logging permissions assigned to the Grantee for the bucket.",
+                                                "enum": [
+                                                    "FULL_CONTROL",
+                                                    "READ",
+                                                    "WRITE"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "TargetPrefix": {
+                                    "description": "This element lets you specify a prefix for the keys that the log files will be stored under.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "TargetBucket",
+                                "TargetPrefix"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "BucketLoggingStatus"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

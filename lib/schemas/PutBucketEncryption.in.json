@@ -1,0 +1,68 @@
+{
+    "type": "object",
+    "properties": {
+        "encryption": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "ServerSideEncryptionConfiguration": {
+                    "description": "Container for server-side encryption configuration rules. Currently S3 supports one rule only.",
+                    "properties": {
+                        "Rules": {
+                            "description": "Container for information about a particular server-side encryption configuration rule.",
+                            "items": {
+                                "description": "Container for information about a particular server-side encryption configuration rule.",
+                                "properties": {
+                                    "ApplyServerSideEncryptionByDefault": {
+                                        "description": "Describes the default server-side encryption to apply to new objects in the bucket. If Put Object request does not specify any server-side encryption, this default encryption will be applied.",
+                                        "properties": {
+                                            "KMSMasterKeyID": {
+                                                "description": "KMS master key ID to use for the default encryption. This parameter is allowed if SSEAlgorithm is aws:kms.",
+                                                "format": "password",
+                                                "type": "string"
+                                            },
+                                            "SSEAlgorithm": {
+                                                "description": "Server-side encryption algorithm to use for the default encryption.",
+                                                "enum": [
+                                                    "AES256",
+                                                    "aws:kms"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "SSEAlgorithm"
+                                        ],
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "xml": {
+                                "wrapped": false
+                            }
+                        }
+                    },
+                    "required": [
+                        "Rules"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "ServerSideEncryptionConfiguration"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

@@ -1,0 +1,78 @@
+{
+    "type": "object",
+    "properties": {
+        "delete": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "Delete": {
+                    "Objects": [
+                        {
+                            "Key": "HappyFace.jpg",
+                            "VersionId": "2LWg7lQLnY41.maGB5Z6SWW.dcq0vx7b"
+                        },
+                        {
+                            "Key": "HappyFace.jpg",
+                            "VersionId": "yoz3HB.ZhCS_tKVEmIOr7qYyyAaZSKVd"
+                        }
+                    ],
+                    "Quiet": false
+                }
+            },
+            "properties": {
+                "Delete": {
+                    "description": "<p/>",
+                    "properties": {
+                        "Objects": {
+                            "description": "<p/>",
+                            "items": {
+                                "description": "<p/>",
+                                "properties": {
+                                    "Key": {
+                                        "description": "Key name of the object to delete.",
+                                        "minLength": 1,
+                                        "type": "string"
+                                    },
+                                    "VersionId": {
+                                        "description": "VersionId for the specific version of the object to delete.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "Key"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "xml": {
+                                "wrapped": false
+                            }
+                        },
+                        "Quiet": {
+                            "description": "Element to enable quiet mode for the request. When you add this element, you must set its value to true.",
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "Objects"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "Delete"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

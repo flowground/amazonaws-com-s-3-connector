@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "properties": {
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "forrandall2"
+            },
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

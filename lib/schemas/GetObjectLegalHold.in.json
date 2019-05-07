@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "Key": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {},
+            "type": "object"
+        },
+        "legal_hold": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

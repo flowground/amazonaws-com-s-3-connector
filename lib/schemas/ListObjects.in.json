@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "MaxKeys": {
+            "required": false,
+            "type": "string"
+        },
+        "Marker": {
+            "required": false,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "MaxKeys": "2"
+            },
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

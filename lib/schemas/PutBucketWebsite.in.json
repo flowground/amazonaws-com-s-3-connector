@@ -1,0 +1,147 @@
+{
+    "type": "object",
+    "properties": {
+        "website": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "ContentMD5": "",
+                "WebsiteConfiguration": {
+                    "ErrorDocument": {
+                        "Key": "error.html"
+                    },
+                    "IndexDocument": {
+                        "Suffix": "index.html"
+                    }
+                }
+            },
+            "properties": {
+                "WebsiteConfiguration": {
+                    "description": "<p/>",
+                    "properties": {
+                        "ErrorDocument": {
+                            "description": "<p/>",
+                            "properties": {
+                                "Key": {
+                                    "description": "The object key name to use when a 4XX class error occurs.",
+                                    "minLength": 1,
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Key"
+                            ],
+                            "type": "object"
+                        },
+                        "IndexDocument": {
+                            "description": "<p/>",
+                            "properties": {
+                                "Suffix": {
+                                    "description": "A suffix that is appended to a request that is for a directory on the website endpoint (e.g. if the suffix is index.html and you make a request to samplebucket/images/ the data that is returned will be for the object with the key name images/index.html) The suffix must not be empty and must not include a slash character.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Suffix"
+                            ],
+                            "type": "object"
+                        },
+                        "RedirectAllRequestsTo": {
+                            "description": "<p/>",
+                            "properties": {
+                                "HostName": {
+                                    "description": "Name of the host where requests will be redirected.",
+                                    "type": "string"
+                                },
+                                "Protocol": {
+                                    "description": "Protocol to use (http, https) when redirecting requests. The default is the protocol that is used in the original request.",
+                                    "enum": [
+                                        "http",
+                                        "https"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "HostName"
+                            ],
+                            "type": "object"
+                        },
+                        "RoutingRules": {
+                            "description": "<p/>",
+                            "items": {
+                                "description": "<p/>",
+                                "properties": {
+                                    "Condition": {
+                                        "description": "A container for describing a condition that must be met for the specified redirect to apply. For example, 1. If request is for pages in the /docs folder, redirect to the /documents folder. 2. If request results in HTTP error 4xx, redirect request to another host where you might process the error.",
+                                        "properties": {
+                                            "HttpErrorCodeReturnedEquals": {
+                                                "description": "The HTTP error code when the redirect is applied. In the event of an error, if the error code equals this value, then the specified redirect is applied. Required when parent element Condition is specified and sibling KeyPrefixEquals is not specified. If both are specified, then both must be true for the redirect to be applied.",
+                                                "type": "string"
+                                            },
+                                            "KeyPrefixEquals": {
+                                                "description": "The object key name prefix when the redirect is applied. For example, to redirect requests for ExamplePage.html, the key prefix will be ExamplePage.html. To redirect request for all pages with the prefix docs/, the key prefix will be /docs, which identifies all objects in the docs/ folder. Required when the parent element Condition is specified and sibling HttpErrorCodeReturnedEquals is not specified. If both conditions are specified, both must be true for the redirect to be applied.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "Redirect": {
+                                        "description": "Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can specify a different error code to return.",
+                                        "properties": {
+                                            "HostName": {
+                                                "description": "The host name to use in the redirect request.",
+                                                "type": "string"
+                                            },
+                                            "HttpRedirectCode": {
+                                                "description": "The HTTP redirect code to use on the response. Not required if one of the siblings is present.",
+                                                "type": "string"
+                                            },
+                                            "Protocol": {
+                                                "description": "Protocol to use (http, https) when redirecting requests. The default is the protocol that is used in the original request.",
+                                                "enum": [
+                                                    "http",
+                                                    "https"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "ReplaceKeyPrefixWith": {
+                                                "description": "The object key prefix to use in the redirect request. For example, to redirect requests for all pages with prefix docs/ (objects in the docs/ folder) to documents/, you can set a condition block with KeyPrefixEquals set to docs/ and in the Redirect set ReplaceKeyPrefixWith to /documents. Not required if one of the siblings is present. Can be present only if ReplaceKeyWith is not provided.",
+                                                "type": "string"
+                                            },
+                                            "ReplaceKeyWith": {
+                                                "description": "The specific object key to use in the redirect request. For example, redirect request to error.html. Not required if one of the sibling is present. Can be present only if ReplaceKeyPrefixWith is not provided.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "Redirect"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "WebsiteConfiguration"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

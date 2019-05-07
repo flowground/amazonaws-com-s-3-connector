@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "accelerate": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "AccelerateConfiguration": {
+                    "description": "Specifies the Accelerate Configuration you want to set for the bucket.",
+                    "properties": {
+                        "Status": {
+                            "description": "The accelerate configuration of the bucket.",
+                            "enum": [
+                                "Enabled",
+                                "Suspended"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "AccelerateConfiguration"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

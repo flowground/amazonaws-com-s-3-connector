@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "policyStatus": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

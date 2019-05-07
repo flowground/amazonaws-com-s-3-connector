@@ -1,0 +1,76 @@
+{
+    "type": "object",
+    "properties": {
+        "tagging": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "Key": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "Key": "HappyFace.jpg",
+                "Tagging": {
+                    "TagSet": [
+                        {
+                            "Key": "Key3",
+                            "Value": "Value3"
+                        },
+                        {
+                            "Key": "Key4",
+                            "Value": "Value4"
+                        }
+                    ]
+                }
+            },
+            "properties": {
+                "Tagging": {
+                    "description": "<p/>",
+                    "properties": {
+                        "TagSet": {
+                            "description": "<p/>",
+                            "items": {
+                                "description": "<p/>",
+                                "properties": {
+                                    "Key": {
+                                        "description": "Name of the tag.",
+                                        "minLength": 1,
+                                        "type": "string"
+                                    },
+                                    "Value": {
+                                        "description": "Value of the tag.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "Key",
+                                    "Value"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "TagSet"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "Tagging"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

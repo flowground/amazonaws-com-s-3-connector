@@ -1,0 +1,47 @@
+{
+    "type": "object",
+    "properties": {
+        "requestPayment": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "RequestPaymentConfiguration": {
+                    "Payer": "Requester"
+                }
+            },
+            "properties": {
+                "RequestPaymentConfiguration": {
+                    "description": "<p/>",
+                    "properties": {
+                        "Payer": {
+                            "description": "Specifies who pays for the download and request fees.",
+                            "enum": [
+                                "Requester",
+                                "BucketOwner"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Payer"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "RequestPaymentConfiguration"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

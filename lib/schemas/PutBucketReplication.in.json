@@ -1,0 +1,248 @@
+{
+    "type": "object",
+    "properties": {
+        "replication": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "ReplicationConfiguration": {
+                    "Role": "arn:aws:iam::123456789012:role/examplerole",
+                    "Rules": [
+                        {
+                            "Destination": {
+                                "Bucket": "arn:aws:s3:::destinationbucket",
+                                "StorageClass": "STANDARD"
+                            },
+                            "Prefix": "",
+                            "Status": "Enabled"
+                        }
+                    ]
+                }
+            },
+            "properties": {
+                "ReplicationConfiguration": {
+                    "description": "A container for replication rules. You can add up to 1,000 rules. The maximum size of a replication configuration is 2 MB.",
+                    "properties": {
+                        "Role": {
+                            "description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that Amazon S3 can assume when replicating the objects.",
+                            "type": "string"
+                        },
+                        "Rules": {
+                            "description": "A container for one or more replication rules. A replication configuration must have at least one rule and can contain a maximum of 1,000 rules. ",
+                            "items": {
+                                "description": "A container for information about a specific replication rule.",
+                                "properties": {
+                                    "DeleteMarkerReplication": {
+                                        "description": "Specifies whether Amazon S3 should replicate delete makers.",
+                                        "properties": {
+                                            "Status": {
+                                                "description": "<p>The status of the delete marker replication.</p> <note> <p> In the current implementation, Amazon S3 doesn't replicate the delete markers. The status must be <code>Disabled</code>. </p> </note>",
+                                                "enum": [
+                                                    "Enabled",
+                                                    "Disabled"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "Destination": {
+                                        "description": "A container for information about the replication destination.",
+                                        "properties": {
+                                            "AccessControlTranslation": {
+                                                "description": "<p>A container for information about access control for replicas. </p> <p>Use this element only in a cross-account scenario where source and destination bucket owners are not the same to change replica ownership to the AWS account that owns the destination bucket. If you don't add this element to the replication configuration, the replicas are owned by same AWS account that owns the source object. </p>",
+                                                "properties": {
+                                                    "Owner": {
+                                                        "description": "The override value for the owner of the replica object.",
+                                                        "enum": [
+                                                            "Destination"
+                                                        ],
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "Owner"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "Account": {
+                                                "description": "<p>The account ID of the destination bucket. Currently, Amazon S3 verifies this value only if Access Control Translation is enabled. </p> <p>In a cross-account scenario, if you change replica ownership to the AWS account that owns the destination bucket by adding the <code>AccessControlTranslation</code> element, this is the account ID of the owner of the destination bucket. </p>",
+                                                "type": "string"
+                                            },
+                                            "Bucket": {
+                                                "description": "<p> The Amazon Resource Name (ARN) of the bucket where you want Amazon S3 to store replicas of the object identified by the rule. </p> <p> If there are multiple rules in your replication configuration, all rules must specify the same bucket as the destination. A replication configuration can replicate objects to only one destination bucket. </p>",
+                                                "type": "string"
+                                            },
+                                            "EncryptionConfiguration": {
+                                                "description": "A container that provides information about encryption. If <code>SourceSelectionCriteria</code> is specified, you must specify this element. ",
+                                                "properties": {
+                                                    "ReplicaKmsKeyID": {
+                                                        "description": "The ID of the AWS KMS key for the AWS Region where the destination bucket resides. Amazon S3 uses this key to encrypt the replica object. ",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "StorageClass": {
+                                                "description": " The class of storage used to store the object. By default Amazon S3 uses storage class of the source object when creating a replica. ",
+                                                "enum": [
+                                                    "STANDARD",
+                                                    "REDUCED_REDUNDANCY",
+                                                    "STANDARD_IA",
+                                                    "ONEZONE_IA",
+                                                    "INTELLIGENT_TIERING",
+                                                    "GLACIER"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "Bucket"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "Filter": {
+                                        "description": "A filter that identifies the subset of objects to which the replication rule applies. A <code>Filter</code> must specify exactly one <code>Prefix</code>, <code>Tag</code>, or an <code>And</code> child element.",
+                                        "properties": {
+                                            "And": {
+                                                "description": "<p>A container for specifying rule filters. The filters determine the subset of objects to which the rule applies. This element is required only if you specify more than one filter. For example: </p> <ul> <li> <p>If you specify both a <code>Prefix</code> and a <code>Tag</code> filter, wrap these filters in an <code>And</code> tag.</p> </li> <li> <p>If you specify a filter based on multiple tags, wrap the <code>Tag</code> elements in an <code>And</code> tag.</p> </li> </ul>",
+                                                "properties": {
+                                                    "Prefix": {
+                                                        "description": "<p/>",
+                                                        "type": "string"
+                                                    },
+                                                    "Tags": {
+                                                        "description": "<p/>",
+                                                        "items": {
+                                                            "description": "<p/>",
+                                                            "properties": {
+                                                                "Key": {
+                                                                    "description": "Name of the tag.",
+                                                                    "minLength": 1,
+                                                                    "type": "string"
+                                                                },
+                                                                "Value": {
+                                                                    "description": "Value of the tag.",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "Key",
+                                                                "Value"
+                                                            ],
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    }
+                                                },
+                                                "type": "object",
+                                                "xml": {
+                                                    "wrapped": false
+                                                }
+                                            },
+                                            "Prefix": {
+                                                "description": "An object keyname prefix that identifies the subset of objects to which the rule applies.",
+                                                "type": "string"
+                                            },
+                                            "Tag": {
+                                                "description": "<p>A container for specifying a tag key and value. </p> <p>The rule applies only to objects that have the tag in their tag set.</p>",
+                                                "properties": {
+                                                    "Key": {
+                                                        "description": "Name of the tag.",
+                                                        "minLength": 1,
+                                                        "type": "string"
+                                                    },
+                                                    "Value": {
+                                                        "description": "Value of the tag.",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "Key",
+                                                    "Value"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "ID": {
+                                        "description": "A unique identifier for the rule. The maximum value is 255 characters.",
+                                        "type": "string"
+                                    },
+                                    "Prefix": {
+                                        "description": "An object keyname prefix that identifies the object or objects to which the rule applies. The maximum prefix length is 1,024 characters. ",
+                                        "type": "string"
+                                    },
+                                    "Priority": {
+                                        "description": "<p>The priority associated with the rule. If you specify multiple rules in a replication configuration, Amazon S3 prioritizes the rules to prevent conflicts when filtering. If two or more rules identify the same object based on a specified filter, the rule with higher priority takes precedence. For example:</p> <ul> <li> <p>Same object quality prefix based filter criteria If prefixes you specified in multiple rules overlap </p> </li> <li> <p>Same object qualify tag based filter criteria specified in multiple rules</p> </li> </ul> <p>For more information, see <a href=\" https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html\">Cross-Region Replication (CRR)</a> in the <i>Amazon S3 Developer Guide</i>.</p>",
+                                        "type": "integer"
+                                    },
+                                    "SourceSelectionCriteria": {
+                                        "description": "<p>A container that describes additional filters for identifying the source objects that you want to replicate. You can choose to enable or disable the replication of these objects. Currently, Amazon S3 supports only the filter that you can specify for objects created with server-side encryption using an AWS KMS-Managed Key (SSE-KMS). </p> <p> If you want Amazon S3 to replicate objects created with server-side encryption using AWS KMS-Managed Keys. </p>",
+                                        "properties": {
+                                            "SseKmsEncryptedObjects": {
+                                                "description": " A container for filter information for the selection of S3 objects encrypted with AWS KMS. If you include <code>SourceSelectionCriteria</code> in the replication configuration, this element is required. ",
+                                                "properties": {
+                                                    "Status": {
+                                                        "description": " If the status is not <code>Enabled</code>, replication for S3 objects encrypted with AWS KMS is disabled.",
+                                                        "enum": [
+                                                            "Enabled",
+                                                            "Disabled"
+                                                        ],
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "Status"
+                                                ],
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "Status": {
+                                        "description": "If status isn't enabled, the rule is ignored.",
+                                        "enum": [
+                                            "Enabled",
+                                            "Disabled"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "Status",
+                                    "Destination"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "xml": {
+                                "wrapped": false
+                            }
+                        }
+                    },
+                    "required": [
+                        "Role",
+                        "Rules"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "ReplicationConfiguration"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

@@ -1,0 +1,164 @@
+{
+    "type": "object",
+    "properties": {
+        "analytics": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "AnalyticsConfiguration": {
+                    "description": "The configuration and any analyses for the analytics filter.",
+                    "properties": {
+                        "Filter": {
+                            "description": "The filter used to describe a set of objects for analyses. A filter must have exactly one prefix, one tag, or one conjunction (AnalyticsAndOperator). If no filter is provided, all objects will be considered in any analysis.",
+                            "properties": {
+                                "And": {
+                                    "description": "A conjunction (logical AND) of predicates, which is used in evaluating an analytics filter. The operator must have at least two predicates.",
+                                    "properties": {
+                                        "Prefix": {
+                                            "description": "The prefix to use when evaluating an AND predicate.",
+                                            "type": "string"
+                                        },
+                                        "Tags": {
+                                            "description": "The list of tags to use when evaluating an AND predicate.",
+                                            "items": {
+                                                "description": "<p/>",
+                                                "properties": {
+                                                    "Key": {
+                                                        "description": "Name of the tag.",
+                                                        "minLength": 1,
+                                                        "type": "string"
+                                                    },
+                                                    "Value": {
+                                                        "description": "Value of the tag.",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "Key",
+                                                    "Value"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "xml": {
+                                        "wrapped": false
+                                    }
+                                },
+                                "Prefix": {
+                                    "description": "The prefix to use when evaluating an analytics filter.",
+                                    "type": "string"
+                                },
+                                "Tag": {
+                                    "description": "The tag to use when evaluating an analytics filter.",
+                                    "properties": {
+                                        "Key": {
+                                            "description": "Name of the tag.",
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "Value": {
+                                            "description": "Value of the tag.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "Key",
+                                        "Value"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "Id": {
+                            "description": "The identifier used to represent an analytics configuration.",
+                            "type": "string"
+                        },
+                        "StorageClassAnalysis": {
+                            "description": "If present, it indicates that data related to access patterns will be collected and made available to analyze the tradeoffs between different storage classes.",
+                            "properties": {
+                                "DataExport": {
+                                    "description": "A container used to describe how data related to the storage class analysis should be exported.",
+                                    "properties": {
+                                        "Destination": {
+                                            "description": "The place to store the data for an analysis.",
+                                            "properties": {
+                                                "S3BucketDestination": {
+                                                    "description": "A destination signifying output to an S3 bucket.",
+                                                    "properties": {
+                                                        "Bucket": {
+                                                            "description": "The Amazon resource name (ARN) of the bucket to which data is exported.",
+                                                            "type": "string"
+                                                        },
+                                                        "BucketAccountId": {
+                                                            "description": "The account ID that owns the destination bucket. If no account ID is provided, the owner will not be validated prior to exporting data.",
+                                                            "type": "string"
+                                                        },
+                                                        "Format": {
+                                                            "description": "The file format used when exporting data to Amazon S3.",
+                                                            "enum": [
+                                                                "CSV"
+                                                            ],
+                                                            "type": "string"
+                                                        },
+                                                        "Prefix": {
+                                                            "description": "The prefix to use when exporting data. The exported data begins with this prefix.",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "Format",
+                                                        "Bucket"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "required": [
+                                                "S3BucketDestination"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "OutputSchemaVersion": {
+                                            "description": "The version of the output schema to use when exporting data. Must be V_1.",
+                                            "enum": [
+                                                "V_1"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "OutputSchemaVersion",
+                                        "Destination"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "Id",
+                        "StorageClassAnalysis"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "AnalyticsConfiguration"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

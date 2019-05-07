@@ -1,0 +1,217 @@
+{
+    "type": "object",
+    "properties": {
+        "notification": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "NotificationConfiguration": {
+                    "description": "<p/>",
+                    "example": {
+                        "QueueConfiguration": {
+                            "Event": "s3:ObjectCreated:Put",
+                            "Events": [
+                                "s3:ObjectCreated:Put"
+                            ],
+                            "Id": "MDQ2OGQ4NDEtOTBmNi00YTM4LTk0NzYtZDIwN2I3NWQ1NjIx",
+                            "Queue": "arn:aws:sqs:us-east-1:acct-id:S3ObjectCreatedEventQueue"
+                        },
+                        "TopicConfiguration": {
+                            "Event": "s3:ObjectCreated:Copy",
+                            "Events": [
+                                "s3:ObjectCreated:Copy"
+                            ],
+                            "Id": "YTVkMWEzZGUtNTY1NS00ZmE2LWJjYjktMmRlY2QwODFkNTJi",
+                            "Topic": "arn:aws:sns:us-east-1:acct-id:S3ObjectCreatedEventTopic"
+                        }
+                    },
+                    "properties": {
+                        "CloudFunctionConfiguration": {
+                            "description": "<p/>",
+                            "properties": {
+                                "CloudFunction": {
+                                    "description": "<p/>",
+                                    "type": "string"
+                                },
+                                "Event": {
+                                    "description": "The bucket event for which to send notifications.",
+                                    "enum": [
+                                        "s3:ReducedRedundancyLostObject",
+                                        "s3:ObjectCreated:*",
+                                        "s3:ObjectCreated:Put",
+                                        "s3:ObjectCreated:Post",
+                                        "s3:ObjectCreated:Copy",
+                                        "s3:ObjectCreated:CompleteMultipartUpload",
+                                        "s3:ObjectRemoved:*",
+                                        "s3:ObjectRemoved:Delete",
+                                        "s3:ObjectRemoved:DeleteMarkerCreated",
+                                        "s3:ObjectRestore:Post",
+                                        "s3:ObjectRestore:Completed"
+                                    ],
+                                    "type": "string"
+                                },
+                                "Events": {
+                                    "description": "<p/>",
+                                    "items": {
+                                        "description": "The bucket event for which to send notifications.",
+                                        "enum": [
+                                            "s3:ReducedRedundancyLostObject",
+                                            "s3:ObjectCreated:*",
+                                            "s3:ObjectCreated:Put",
+                                            "s3:ObjectCreated:Post",
+                                            "s3:ObjectCreated:Copy",
+                                            "s3:ObjectCreated:CompleteMultipartUpload",
+                                            "s3:ObjectRemoved:*",
+                                            "s3:ObjectRemoved:Delete",
+                                            "s3:ObjectRemoved:DeleteMarkerCreated",
+                                            "s3:ObjectRestore:Post",
+                                            "s3:ObjectRestore:Completed"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "type": "array",
+                                    "xml": {
+                                        "wrapped": false
+                                    }
+                                },
+                                "Id": {
+                                    "description": "An optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID.",
+                                    "type": "string"
+                                },
+                                "InvocationRole": {
+                                    "description": "<p/>",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "QueueConfiguration": {
+                            "description": "<p/>",
+                            "properties": {
+                                "Event": {
+                                    "description": "The bucket event for which to send notifications.",
+                                    "enum": [
+                                        "s3:ReducedRedundancyLostObject",
+                                        "s3:ObjectCreated:*",
+                                        "s3:ObjectCreated:Put",
+                                        "s3:ObjectCreated:Post",
+                                        "s3:ObjectCreated:Copy",
+                                        "s3:ObjectCreated:CompleteMultipartUpload",
+                                        "s3:ObjectRemoved:*",
+                                        "s3:ObjectRemoved:Delete",
+                                        "s3:ObjectRemoved:DeleteMarkerCreated",
+                                        "s3:ObjectRestore:Post",
+                                        "s3:ObjectRestore:Completed"
+                                    ],
+                                    "type": "string"
+                                },
+                                "Events": {
+                                    "description": "<p/>",
+                                    "items": {
+                                        "description": "The bucket event for which to send notifications.",
+                                        "enum": [
+                                            "s3:ReducedRedundancyLostObject",
+                                            "s3:ObjectCreated:*",
+                                            "s3:ObjectCreated:Put",
+                                            "s3:ObjectCreated:Post",
+                                            "s3:ObjectCreated:Copy",
+                                            "s3:ObjectCreated:CompleteMultipartUpload",
+                                            "s3:ObjectRemoved:*",
+                                            "s3:ObjectRemoved:Delete",
+                                            "s3:ObjectRemoved:DeleteMarkerCreated",
+                                            "s3:ObjectRestore:Post",
+                                            "s3:ObjectRestore:Completed"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "type": "array",
+                                    "xml": {
+                                        "wrapped": false
+                                    }
+                                },
+                                "Id": {
+                                    "description": "An optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID.",
+                                    "type": "string"
+                                },
+                                "Queue": {
+                                    "description": "<p/>",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "TopicConfiguration": {
+                            "description": "<p/>",
+                            "properties": {
+                                "Event": {
+                                    "description": "Bucket event for which to send notifications.",
+                                    "enum": [
+                                        "s3:ReducedRedundancyLostObject",
+                                        "s3:ObjectCreated:*",
+                                        "s3:ObjectCreated:Put",
+                                        "s3:ObjectCreated:Post",
+                                        "s3:ObjectCreated:Copy",
+                                        "s3:ObjectCreated:CompleteMultipartUpload",
+                                        "s3:ObjectRemoved:*",
+                                        "s3:ObjectRemoved:Delete",
+                                        "s3:ObjectRemoved:DeleteMarkerCreated",
+                                        "s3:ObjectRestore:Post",
+                                        "s3:ObjectRestore:Completed"
+                                    ],
+                                    "type": "string"
+                                },
+                                "Events": {
+                                    "description": "<p/>",
+                                    "items": {
+                                        "description": "The bucket event for which to send notifications.",
+                                        "enum": [
+                                            "s3:ReducedRedundancyLostObject",
+                                            "s3:ObjectCreated:*",
+                                            "s3:ObjectCreated:Put",
+                                            "s3:ObjectCreated:Post",
+                                            "s3:ObjectCreated:Copy",
+                                            "s3:ObjectCreated:CompleteMultipartUpload",
+                                            "s3:ObjectRemoved:*",
+                                            "s3:ObjectRemoved:Delete",
+                                            "s3:ObjectRemoved:DeleteMarkerCreated",
+                                            "s3:ObjectRestore:Post",
+                                            "s3:ObjectRestore:Completed"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "type": "array",
+                                    "xml": {
+                                        "wrapped": false
+                                    }
+                                },
+                                "Id": {
+                                    "description": "An optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID.",
+                                    "type": "string"
+                                },
+                                "Topic": {
+                                    "description": "Amazon SNS topic to which Amazon S3 will publish a message to report the specified events for the bucket.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "NotificationConfiguration"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

@@ -1,0 +1,131 @@
+{
+    "type": "object",
+    "properties": {
+        "cors": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "",
+                "CORSConfiguration": {
+                    "CORSRules": [
+                        {
+                            "AllowedHeaders": [
+                                "*"
+                            ],
+                            "AllowedMethods": [
+                                "PUT",
+                                "POST",
+                                "DELETE"
+                            ],
+                            "AllowedOrigins": [
+                                "http://www.example.com"
+                            ],
+                            "ExposeHeaders": [
+                                "x-amz-server-side-encryption"
+                            ],
+                            "MaxAgeSeconds": 3000
+                        },
+                        {
+                            "AllowedHeaders": [
+                                "Authorization"
+                            ],
+                            "AllowedMethods": [
+                                "GET"
+                            ],
+                            "AllowedOrigins": [
+                                "*"
+                            ],
+                            "MaxAgeSeconds": 3000
+                        }
+                    ]
+                },
+                "ContentMD5": ""
+            },
+            "properties": {
+                "CORSConfiguration": {
+                    "description": "<p/>",
+                    "properties": {
+                        "CORSRules": {
+                            "description": "<p/>",
+                            "items": {
+                                "description": "<p/>",
+                                "properties": {
+                                    "AllowedHeaders": {
+                                        "description": "Specifies which headers are allowed in a pre-flight OPTIONS request.",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array",
+                                        "xml": {
+                                            "wrapped": false
+                                        }
+                                    },
+                                    "AllowedMethods": {
+                                        "description": "Identifies HTTP methods that the domain/origin specified in the rule is allowed to execute.",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array",
+                                        "xml": {
+                                            "wrapped": false
+                                        }
+                                    },
+                                    "AllowedOrigins": {
+                                        "description": "One or more origins you want customers to be able to access the bucket from.",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array",
+                                        "xml": {
+                                            "wrapped": false
+                                        }
+                                    },
+                                    "ExposeHeaders": {
+                                        "description": "One or more headers in the response that you want customers to be able to access from their applications (for example, from a JavaScript XMLHttpRequest object).",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array",
+                                        "xml": {
+                                            "wrapped": false
+                                        }
+                                    },
+                                    "MaxAgeSeconds": {
+                                        "description": "The time in seconds that your browser is to cache the preflight response for the specified resource.",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "AllowedMethods",
+                                    "AllowedOrigins"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "xml": {
+                                "wrapped": false
+                            }
+                        }
+                    },
+                    "required": [
+                        "CORSRules"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "CORSConfiguration"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

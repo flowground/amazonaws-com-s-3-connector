@@ -1,0 +1,35 @@
+{
+    "type": "object",
+    "properties": {
+        "MaxUploads": {
+            "required": false,
+            "type": "string"
+        },
+        "KeyMarker": {
+            "required": false,
+            "type": "string"
+        },
+        "UploadIdMarker": {
+            "required": false,
+            "type": "string"
+        },
+        "uploads": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "KeyMarker": "nextkeyfrompreviousresponse",
+                "MaxUploads": "2",
+                "UploadIdMarker": "valuefrompreviousresponse"
+            },
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "encryption": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

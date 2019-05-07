@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "MaxKeys": {
+            "required": false,
+            "type": "string"
+        },
+        "ContinuationToken": {
+            "required": false,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "MaxKeys": "2"
+            },
+            "properties": {},
+            "type": "object"
+        },
+        "list_type": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "2"
+            ]
+        }
+    }
+}

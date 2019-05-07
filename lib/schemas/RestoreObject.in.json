@@ -1,0 +1,409 @@
+{
+    "type": "object",
+    "properties": {
+        "restore": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "Key": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "Key": "archivedobjectkey",
+                "RestoreRequest": {
+                    "Days": 1,
+                    "GlacierJobParameters": {
+                        "Tier": "Expedited"
+                    }
+                }
+            },
+            "properties": {
+                "RestoreRequest": {
+                    "description": "Container for restore job parameters.",
+                    "properties": {
+                        "Days": {
+                            "description": "Lifetime of the active copy in days. Do not use with restores that specify OutputLocation.",
+                            "type": "integer"
+                        },
+                        "Description": {
+                            "description": "The optional description for the job.",
+                            "type": "string"
+                        },
+                        "GlacierJobParameters": {
+                            "description": "Glacier related parameters pertaining to this job. Do not use with restores that specify OutputLocation.",
+                            "properties": {
+                                "Tier": {
+                                    "description": "Glacier retrieval tier at which the restore will be processed.",
+                                    "enum": [
+                                        "Standard",
+                                        "Bulk",
+                                        "Expedited"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Tier"
+                            ],
+                            "type": "object"
+                        },
+                        "OutputLocation": {
+                            "description": "Describes the location where the restore job's output is stored.",
+                            "properties": {
+                                "S3": {
+                                    "description": "Describes an S3 location that will receive the results of the restore request.",
+                                    "properties": {
+                                        "AccessControlList": {
+                                            "description": "A list of grants that control access to the staged results.",
+                                            "items": {
+                                                "description": "<p/>",
+                                                "properties": {
+                                                    "Grantee": {
+                                                        "description": "<p/>",
+                                                        "properties": {
+                                                            "DisplayName": {
+                                                                "description": "Screen name of the grantee.",
+                                                                "type": "string"
+                                                            },
+                                                            "EmailAddress": {
+                                                                "description": "Email address of the grantee.",
+                                                                "type": "string"
+                                                            },
+                                                            "ID": {
+                                                                "description": "The canonical user ID of the grantee.",
+                                                                "type": "string"
+                                                            },
+                                                            "Type": {
+                                                                "description": "Type of grantee",
+                                                                "enum": [
+                                                                    "CanonicalUser",
+                                                                    "AmazonCustomerByEmail",
+                                                                    "Group"
+                                                                ],
+                                                                "type": "string"
+                                                            },
+                                                            "URI": {
+                                                                "description": "URI of the grantee group.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "Type"
+                                                        ],
+                                                        "type": "object",
+                                                        "xml": {
+                                                            "attribute": true,
+                                                            "namespace": "http://www.w3.org/2001/XMLSchema-instance"
+                                                        }
+                                                    },
+                                                    "Permission": {
+                                                        "description": "Specifies the permission given to the grantee.",
+                                                        "enum": [
+                                                            "FULL_CONTROL",
+                                                            "WRITE",
+                                                            "WRITE_ACP",
+                                                            "READ",
+                                                            "READ_ACP"
+                                                        ],
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "BucketName": {
+                                            "description": "The name of the bucket where the restore results will be placed.",
+                                            "type": "string"
+                                        },
+                                        "CannedACL": {
+                                            "description": "The canned ACL to apply to the restore results.",
+                                            "enum": [
+                                                "private",
+                                                "public-read",
+                                                "public-read-write",
+                                                "authenticated-read",
+                                                "aws-exec-read",
+                                                "bucket-owner-read",
+                                                "bucket-owner-full-control"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "Encryption": {
+                                            "description": "Describes the server-side encryption that will be applied to the restore results.",
+                                            "properties": {
+                                                "EncryptionType": {
+                                                    "description": "The server-side encryption algorithm used when storing job results in Amazon S3 (e.g., AES256, aws:kms).",
+                                                    "enum": [
+                                                        "AES256",
+                                                        "aws:kms"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "KMSContext": {
+                                                    "description": "If the encryption type is aws:kms, this optional value can be used to specify the encryption context for the restore results.",
+                                                    "type": "string"
+                                                },
+                                                "KMSKeyId": {
+                                                    "description": "If the encryption type is aws:kms, this optional value specifies the AWS KMS key ID to use for encryption of job results.",
+                                                    "format": "password",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "EncryptionType"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "Prefix": {
+                                            "description": "The prefix that is prepended to the restore results for this request.",
+                                            "type": "string"
+                                        },
+                                        "StorageClass": {
+                                            "description": "The class of storage used to store the restore results.",
+                                            "enum": [
+                                                "STANDARD",
+                                                "REDUCED_REDUNDANCY",
+                                                "STANDARD_IA",
+                                                "ONEZONE_IA",
+                                                "INTELLIGENT_TIERING",
+                                                "GLACIER"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "Tagging": {
+                                            "description": "The tag-set that is applied to the restore results.",
+                                            "properties": {
+                                                "TagSet": {
+                                                    "description": "<p/>",
+                                                    "items": {
+                                                        "description": "<p/>",
+                                                        "properties": {
+                                                            "Key": {
+                                                                "description": "Name of the tag.",
+                                                                "minLength": 1,
+                                                                "type": "string"
+                                                            },
+                                                            "Value": {
+                                                                "description": "Value of the tag.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "Key",
+                                                            "Value"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "required": [
+                                                "TagSet"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "UserMetadata": {
+                                            "description": "A list of metadata to store with the restore results in S3.",
+                                            "items": {
+                                                "description": "A metadata key-value pair to store with an object.",
+                                                "properties": {
+                                                    "Name": {
+                                                        "description": "<p/>",
+                                                        "type": "string"
+                                                    },
+                                                    "Value": {
+                                                        "description": "<p/>",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "required": [
+                                        "BucketName",
+                                        "Prefix"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "SelectParameters": {
+                            "description": "Describes the parameters for Select job types.",
+                            "properties": {
+                                "Expression": {
+                                    "description": "The expression that is used to query the object.",
+                                    "type": "string"
+                                },
+                                "ExpressionType": {
+                                    "description": "The type of the provided expression (e.g., SQL).",
+                                    "enum": [
+                                        "SQL"
+                                    ],
+                                    "type": "string"
+                                },
+                                "InputSerialization": {
+                                    "description": "Describes the serialization format of the object.",
+                                    "properties": {
+                                        "CSV": {
+                                            "description": "Describes the serialization of a CSV-encoded object.",
+                                            "properties": {
+                                                "AllowQuotedRecordDelimiter": {
+                                                    "description": "Specifies that CSV field values may contain quoted record delimiters and such records should be allowed. Default value is FALSE. Setting this value to TRUE may lower performance.",
+                                                    "type": "boolean"
+                                                },
+                                                "Comments": {
+                                                    "description": "The single character used to indicate a row should be ignored when present at the start of a row.",
+                                                    "type": "string"
+                                                },
+                                                "FieldDelimiter": {
+                                                    "description": "The value used to separate individual fields in a record.",
+                                                    "type": "string"
+                                                },
+                                                "FileHeaderInfo": {
+                                                    "description": "Describes the first line of input. Valid values: None, Ignore, Use.",
+                                                    "enum": [
+                                                        "USE",
+                                                        "IGNORE",
+                                                        "NONE"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "QuoteCharacter": {
+                                                    "description": "Value used for escaping where the field delimiter is part of the value.",
+                                                    "type": "string"
+                                                },
+                                                "QuoteEscapeCharacter": {
+                                                    "description": "The single character used for escaping the quote character inside an already escaped value.",
+                                                    "type": "string"
+                                                },
+                                                "RecordDelimiter": {
+                                                    "description": "The value used to separate individual records.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "CompressionType": {
+                                            "description": "Specifies object's compression format. Valid values: NONE, GZIP, BZIP2. Default Value: NONE.",
+                                            "enum": [
+                                                "NONE",
+                                                "GZIP",
+                                                "BZIP2"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "JSON": {
+                                            "description": "Specifies JSON as object's input serialization format.",
+                                            "properties": {
+                                                "Type": {
+                                                    "description": "The type of JSON. Valid values: Document, Lines.",
+                                                    "enum": [
+                                                        "DOCUMENT",
+                                                        "LINES"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "Parquet": {
+                                            "description": "Specifies Parquet as object's input serialization format.",
+                                            "properties": {},
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "OutputSerialization": {
+                                    "description": "Describes how the results of the Select job are serialized.",
+                                    "properties": {
+                                        "CSV": {
+                                            "description": "Describes the serialization of CSV-encoded Select results.",
+                                            "properties": {
+                                                "FieldDelimiter": {
+                                                    "description": "The value used to separate individual fields in a record.",
+                                                    "type": "string"
+                                                },
+                                                "QuoteCharacter": {
+                                                    "description": "The value used for escaping where the field delimiter is part of the value.",
+                                                    "type": "string"
+                                                },
+                                                "QuoteEscapeCharacter": {
+                                                    "description": "Th single character used for escaping the quote character inside an already escaped value.",
+                                                    "type": "string"
+                                                },
+                                                "QuoteFields": {
+                                                    "description": "Indicates whether or not all output fields should be quoted.",
+                                                    "enum": [
+                                                        "ALWAYS",
+                                                        "ASNEEDED"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "RecordDelimiter": {
+                                                    "description": "The value used to separate individual records.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "JSON": {
+                                            "description": "Specifies JSON as request's output serialization format.",
+                                            "properties": {
+                                                "RecordDelimiter": {
+                                                    "description": "The value used to separate individual records in the output.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "required": [
+                                "InputSerialization",
+                                "ExpressionType",
+                                "Expression",
+                                "OutputSerialization"
+                            ],
+                            "type": "object"
+                        },
+                        "Tier": {
+                            "description": "Glacier retrieval tier at which the restore will be processed.",
+                            "enum": [
+                                "Standard",
+                                "Bulk",
+                                "Expedited"
+                            ],
+                            "type": "string"
+                        },
+                        "Type": {
+                            "description": "Type of restore request.",
+                            "enum": [
+                                "SELECT"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

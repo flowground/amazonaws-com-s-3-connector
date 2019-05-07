@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {
+        "tagging": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "Key": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "Key": "HappyFace.jpg",
+                "VersionId": "ydlaNkwWm0SfKJR.T1b1fIdPRbldTYRI"
+            },
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

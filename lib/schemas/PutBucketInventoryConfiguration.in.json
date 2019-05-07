@@ -1,0 +1,167 @@
+{
+    "type": "object",
+    "properties": {
+        "inventory": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "InventoryConfiguration": {
+                    "description": "Specifies the inventory configuration.",
+                    "properties": {
+                        "Destination": {
+                            "description": "Contains information about where to publish the inventory results.",
+                            "properties": {
+                                "S3BucketDestination": {
+                                    "description": "Contains the bucket name, file format, bucket owner (optional), and prefix (optional) where inventory results are published.",
+                                    "properties": {
+                                        "AccountId": {
+                                            "description": "The ID of the account that owns the destination bucket.",
+                                            "type": "string"
+                                        },
+                                        "Bucket": {
+                                            "description": "The Amazon resource name (ARN) of the bucket where inventory results will be published.",
+                                            "type": "string"
+                                        },
+                                        "Encryption": {
+                                            "description": "Contains the type of server-side encryption used to encrypt the inventory results.",
+                                            "properties": {
+                                                "SSEKMS": {
+                                                    "description": "Specifies the use of SSE-KMS to encrypt delivered Inventory reports.",
+                                                    "properties": {
+                                                        "KeyId": {
+                                                            "description": "Specifies the ID of the AWS Key Management Service (KMS) master encryption key to use for encrypting Inventory reports.",
+                                                            "format": "password",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "KeyId"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "SSES3": {
+                                                    "description": "Specifies the use of SSE-S3 to encrypt delivered Inventory reports.",
+                                                    "properties": {},
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "Format": {
+                                            "description": "Specifies the output format of the inventory results.",
+                                            "enum": [
+                                                "CSV",
+                                                "ORC",
+                                                "Parquet"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        "Prefix": {
+                                            "description": "The prefix that is prepended to all inventory results.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "Bucket",
+                                        "Format"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "required": [
+                                "S3BucketDestination"
+                            ],
+                            "type": "object"
+                        },
+                        "Filter": {
+                            "description": "Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria.",
+                            "properties": {
+                                "Prefix": {
+                                    "description": "The prefix that an object must have to be included in the inventory results.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Prefix"
+                            ],
+                            "type": "object"
+                        },
+                        "Id": {
+                            "description": "The ID used to identify the inventory configuration.",
+                            "type": "string"
+                        },
+                        "IncludedObjectVersions": {
+                            "description": "Specifies which object version(s) to included in the inventory results.",
+                            "enum": [
+                                "All",
+                                "Current"
+                            ],
+                            "type": "string"
+                        },
+                        "IsEnabled": {
+                            "description": "Specifies whether the inventory is enabled or disabled.",
+                            "type": "boolean"
+                        },
+                        "OptionalFields": {
+                            "description": "Contains the optional fields that are included in the inventory results.",
+                            "items": {
+                                "enum": [
+                                    "Size",
+                                    "LastModifiedDate",
+                                    "StorageClass",
+                                    "ETag",
+                                    "IsMultipartUploaded",
+                                    "ReplicationStatus",
+                                    "EncryptionStatus",
+                                    "ObjectLockRetainUntilDate",
+                                    "ObjectLockMode",
+                                    "ObjectLockLegalHoldStatus"
+                                ],
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "Schedule": {
+                            "description": "Specifies the schedule for generating inventory results.",
+                            "properties": {
+                                "Frequency": {
+                                    "description": "Specifies how frequently inventory results are produced.",
+                                    "enum": [
+                                        "Daily",
+                                        "Weekly"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "Frequency"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "Destination",
+                        "IsEnabled",
+                        "Id",
+                        "IncludedObjectVersions",
+                        "Schedule"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "InventoryConfiguration"
+            ],
+            "type": "object",
+            "xml": {
+                "namespace": "http://s3.amazonaws.com/doc/2006-03-01/"
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "properties": {
+        "MaxKeys": {
+            "required": false,
+            "type": "string"
+        },
+        "KeyMarker": {
+            "required": false,
+            "type": "string"
+        },
+        "VersionIdMarker": {
+            "required": false,
+            "type": "string"
+        },
+        "versions": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "example": {
+                "Bucket": "examplebucket",
+                "Prefix": "HappyFace.jpg"
+            },
+            "properties": {},
+            "type": "object"
+        }
+    }
+}

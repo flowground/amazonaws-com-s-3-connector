@@ -1,0 +1,176 @@
+{
+    "type": "object",
+    "properties": {
+        "select": {
+            "required": true,
+            "type": "string"
+        },
+        "Bucket": {
+            "required": true,
+            "type": "string"
+        },
+        "Key": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Request to filter the contents of an Amazon S3 object based on a simple Structured Query Language (SQL) statement. In the request, along with the SQL expression, you must specify a data serialization format (JSON or CSV) of the object. Amazon S3 uses this to parse object data into records. It returns only records that match the specified SQL expression. You must also specify the data serialization format for the response. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html\">S3Select API Documentation</a>.",
+            "properties": {
+                "Expression": {
+                    "description": "The expression that is used to query the object.",
+                    "type": "string"
+                },
+                "ExpressionType": {
+                    "description": "The type of the provided expression (for example., SQL).",
+                    "enum": [
+                        "SQL"
+                    ],
+                    "type": "string"
+                },
+                "InputSerialization": {
+                    "description": "Describes the format of the data in the object that is being queried.",
+                    "properties": {
+                        "CSV": {
+                            "description": "Describes the serialization of a CSV-encoded object.",
+                            "properties": {
+                                "AllowQuotedRecordDelimiter": {
+                                    "description": "Specifies that CSV field values may contain quoted record delimiters and such records should be allowed. Default value is FALSE. Setting this value to TRUE may lower performance.",
+                                    "type": "boolean"
+                                },
+                                "Comments": {
+                                    "description": "The single character used to indicate a row should be ignored when present at the start of a row.",
+                                    "type": "string"
+                                },
+                                "FieldDelimiter": {
+                                    "description": "The value used to separate individual fields in a record.",
+                                    "type": "string"
+                                },
+                                "FileHeaderInfo": {
+                                    "description": "Describes the first line of input. Valid values: None, Ignore, Use.",
+                                    "enum": [
+                                        "USE",
+                                        "IGNORE",
+                                        "NONE"
+                                    ],
+                                    "type": "string"
+                                },
+                                "QuoteCharacter": {
+                                    "description": "Value used for escaping where the field delimiter is part of the value.",
+                                    "type": "string"
+                                },
+                                "QuoteEscapeCharacter": {
+                                    "description": "The single character used for escaping the quote character inside an already escaped value.",
+                                    "type": "string"
+                                },
+                                "RecordDelimiter": {
+                                    "description": "The value used to separate individual records.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "CompressionType": {
+                            "description": "Specifies object's compression format. Valid values: NONE, GZIP, BZIP2. Default Value: NONE.",
+                            "enum": [
+                                "NONE",
+                                "GZIP",
+                                "BZIP2"
+                            ],
+                            "type": "string"
+                        },
+                        "JSON": {
+                            "description": "Specifies JSON as object's input serialization format.",
+                            "properties": {
+                                "Type": {
+                                    "description": "The type of JSON. Valid values: Document, Lines.",
+                                    "enum": [
+                                        "DOCUMENT",
+                                        "LINES"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "Parquet": {
+                            "description": "Specifies Parquet as object's input serialization format.",
+                            "properties": {},
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "OutputSerialization": {
+                    "description": "Describes the format of the data that you want Amazon S3 to return in response.",
+                    "properties": {
+                        "CSV": {
+                            "description": "Describes the serialization of CSV-encoded Select results.",
+                            "properties": {
+                                "FieldDelimiter": {
+                                    "description": "The value used to separate individual fields in a record.",
+                                    "type": "string"
+                                },
+                                "QuoteCharacter": {
+                                    "description": "The value used for escaping where the field delimiter is part of the value.",
+                                    "type": "string"
+                                },
+                                "QuoteEscapeCharacter": {
+                                    "description": "Th single character used for escaping the quote character inside an already escaped value.",
+                                    "type": "string"
+                                },
+                                "QuoteFields": {
+                                    "description": "Indicates whether or not all output fields should be quoted.",
+                                    "enum": [
+                                        "ALWAYS",
+                                        "ASNEEDED"
+                                    ],
+                                    "type": "string"
+                                },
+                                "RecordDelimiter": {
+                                    "description": "The value used to separate individual records.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "JSON": {
+                            "description": "Specifies JSON as request's output serialization format.",
+                            "properties": {
+                                "RecordDelimiter": {
+                                    "description": "The value used to separate individual records in the output.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "RequestProgress": {
+                    "description": "Specifies if periodic request progress information should be enabled.",
+                    "properties": {
+                        "Enabled": {
+                            "description": "Specifies whether periodic QueryProgress frames should be sent. Valid values: TRUE, FALSE. Default value: FALSE.",
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "Expression",
+                "ExpressionType",
+                "InputSerialization",
+                "OutputSerialization"
+            ],
+            "type": "object"
+        },
+        "select_type": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "2"
+            ]
+        }
+    }
+}
